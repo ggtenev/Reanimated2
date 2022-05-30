@@ -1,6 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
+import {
+  GestureDetector,
+  Gesture,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   useDerivedValue,
@@ -64,7 +68,7 @@ export default function GestureHandler2() {
     };
   });
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <GestureDetector gesture={gestureH}>
         <Animated.View style={[styles.circle, rStyle, { zIndex: 1000 }]} />
       </GestureDetector>
@@ -74,7 +78,7 @@ export default function GestureHandler2() {
       <Animated.View
         style={[styles.circle, rStyleB, { backgroundColor: "green" }]}
       />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 

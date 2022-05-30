@@ -13,9 +13,12 @@ import Mandala from "./components/Mandala";
 import SvgTest from "./components/SvgTest";
 import ScrollViewPan from "./components/ScrollViewPan";
 import PerfectCircle from "./components/PerfectCircle";
+import ColorPicker from "./components/ColorPicker";
+import CircularProgress from "./components/CircularProgress";
+import SwipeToDelete from "./components/SwipeToDelete";
 
 export default function App() {
-  return <PerfectCircle initialAspect={3} />;
+  return <SwipeToDelete />;
 }
 
 const styles = StyleSheet.create({

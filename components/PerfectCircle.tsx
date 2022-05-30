@@ -24,9 +24,10 @@ import {
   Gesture,
   GestureDetector,
   PanGestureHandler,
+  GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-import mandala from "../assets/Mandala.png";
+// import mandala from "../assets/Mandala.png";
 const { width } = Dimensions.get("window");
 const SCREEN_WIDTH = width - 15;
 
@@ -170,7 +171,9 @@ export default function PerfectCircle({ initialAspect }: Props) {
   });
 
   const gestureHandler = useAnimatedGestureHandler({
-    onStart: () => {},
+    onStart: () => {
+      console.log(555);
+    },
     onActive: (event) => {
       //   console.log(event.translationX);
     },
@@ -201,174 +204,169 @@ export default function PerfectCircle({ initialAspect }: Props) {
   });
 
   return (
-    // <Animated.View style={[styles.container, backGroundAnim, { opacity: 1 }]}>
-    <LinearGradient
-      colors={["rgba(255,255,255,0)", BackColor]}
-      style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
-    >
-      {/* <View style={[{ width: 100, height: 100 }, backGroundAnim]}></View> */}
-      <Text>{aspectOnJs}</Text>
-      <Button title="aspect" onPress={() => console.log(aspectR.value)} />
-      <PanGestureHandler onGestureEvent={gestureHandler}>
-        <Animated.View style={rStyle}>
-          <Image
-            source={mandala}
-            style={{
-              width: Dimensions.get("window").width * 0.9,
-              height: Dimensions.get("window").width * 0.9,
-            }}
-          />
-          {/* <AspectButton title="Inspiration Driven" aspect={0} /> */}
-          <View
-            style={{
-              //   borderRadius:
-              //     Math.round(
-              //       Dimensions.get("window").width + Dimensions.get("window").height
-              //     ) / 2,
-              width: Dimensions.get("window").width * 0.9,
-              height: Dimensions.get("window").width * 0.9,
-              //   borderWidth: 5,
-              borderColor: "red",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "absolute",
-            }}
-            // underlayColor = '#ccc'
-          >
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                bottom: Dimensions.get("window").width * 0.78,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <AspectButton
-                title="Inspiration Driven"
-                aspect={0}
-                //   source={require("../assets/favicon.png")}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                bottom: Dimensions.get("window").width * 0.66,
-                right: width > 666 ? 50 : 25,
+    <GestureHandlerRootView style={styles.container}>
+      <LinearGradient
+        colors={["rgba(255,255,255,0)", BackColor]}
+        style={[
+          {
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            // width: "100%",
+          },
+        ]}
+      >
+        {/* <View style={[{ width: 100, height: 100 }, backGroundAnim]}></View> */}
+        <Text>{aspectOnJs}</Text>
+        <Button title="aspect" onPress={() => console.log(aspectR.value)} />
 
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [{ rotate: "45deg" }],
-              }}
-            >
-              <AspectButton title="Big Picture Thinking" aspect={1} />
-            </TouchableOpacity>
-            <TouchableOpacity
+        <PanGestureHandler onGestureEvent={gestureHandler}>
+          <Animated.View style={rStyle}>
+            <Animated.Image
+              source={require("../assets/Mandala.png")}
               style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                bottom: Dimensions.get("window").width * 0.66,
-                left: width > 666 ? 40 : 20,
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [{ rotate: "-45deg" }],
+                width: Dimensions.get("window").width * 0.9,
+                height: Dimensions.get("window").width * 0.9,
               }}
-            >
-              <AspectButton title="People Focused" aspect={7} />
-            </TouchableOpacity>
-            <TouchableOpacity
+            />
+            {/* <AspectButton title="Inspiration Driven" aspect={0} /> */}
+            <View
               style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                top: Dimensions.get("window").width * 0.78,
+                width: Dimensions.get("window").width * 0.9,
+                height: Dimensions.get("window").width * 0.9,
+                //   borderWidth: 5,
+                borderColor: "red",
                 justifyContent: "center",
                 alignItems: "center",
-                transform: [{ rotate: aspectR.value == 4 ? "180deg" : "0deg" }], // normally 0
+                position: "absolute",
               }}
             >
-              <AspectButton title="Discipline Driven" aspect={4} />
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  bottom: Dimensions.get("window").width * 0.78,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <AspectButton title="Inspiration Driven" aspect={0} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  bottom: Dimensions.get("window").width * 0.66,
+                  right: width > 666 ? 50 : 25,
 
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                top: Dimensions.get("window").width * 0.66,
-                right: width > 666 ? 50 : 20,
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [
-                  { rotate: aspectR.value == 3 ? "135deg" : "-45deg" },
-                ],
-              }}
-            >
-              <AspectButton title="Outcome Focused" aspect={3} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                top: Dimensions.get("window").width * 0.66,
-                left: width > 666 ? 50 : 22,
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [{ rotate: "-135deg" }], //Normally 45deg
-              }}
-            >
-              <AspectButton title="Down to Earth" aspect={5} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
-                position: "absolute",
-                bottom: Dimensions.get("window").width * 0.4,
-                left: width > 666 ? -40 : -20,
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [{ rotate: "-90deg" }],
-              }}
-            >
-              <AspectButton title="Introverted" aspect={6} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                // height: 50,
-                // width: 50,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [{ rotate: "45deg" }],
+                }}
+              >
+                <AspectButton title="Big Picture Thinking" aspect={1} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  bottom: Dimensions.get("window").width * 0.66,
+                  left: width > 666 ? 40 : 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [{ rotate: "-45deg" }],
+                }}
+              >
+                <AspectButton title="People Focused" aspect={7} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  top: Dimensions.get("window").width * 0.78,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [
+                    { rotate: aspectR.value == 4 ? "180deg" : "0deg" },
+                  ], // normally 0
+                }}
+              >
+                <AspectButton title="Discipline Driven" aspect={4} />
+              </TouchableOpacity>
 
-                position: "absolute",
-                bottom: Dimensions.get("window").width * 0.4,
-                right: width > 666 ? -40 : -20,
-                justifyContent: "center",
-                alignItems: "center",
-                transform: [{ rotate: "90deg" }],
-              }}
-            >
-              <AspectButton aspect={2} title="Extraverted" />
-            </TouchableOpacity>
-          </View>
-          {/* <Image
+              <TouchableOpacity
+                style={{
+                  // height: 50,
+                  // width: 50,
+                  position: "absolute",
+                  top: Dimensions.get("window").width * 0.66,
+                  right: width > 666 ? 50 : 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [
+                    { rotate: aspectR.value == 3 ? "135deg" : "-45deg" },
+                  ],
+                }}
+              >
+                <AspectButton title="Outcome Focused" aspect={3} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  // height: 50,
+                  // width: 50,
+                  position: "absolute",
+                  top: Dimensions.get("window").width * 0.66,
+                  left: width > 666 ? 50 : 22,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [{ rotate: "-135deg" }], //Normally 45deg
+                }}
+              >
+                <AspectButton title="Down to Earth" aspect={5} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  // height: 50,
+                  // width: 50,
+                  position: "absolute",
+                  bottom: Dimensions.get("window").width * 0.4,
+                  left: width > 666 ? -40 : -20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [{ rotate: "-90deg" }],
+                }}
+              >
+                <AspectButton title="Introverted" aspect={6} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  // height: 50,
+                  // width: 50,
+
+                  position: "absolute",
+                  bottom: Dimensions.get("window").width * 0.4,
+                  right: width > 666 ? -40 : -20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transform: [{ rotate: "90deg" }],
+                }}
+              >
+                <AspectButton aspect={2} title="Extraverted" />
+              </TouchableOpacity>
+            </View>
+            {/* <Image
         style={{ height: SCREEN_WIDTH, width: SCREEN_WIDTH }}
         source={mandala}
       /> */}
-        </Animated.View>
-      </PanGestureHandler>
-      {/* </Animated.View> */}
-    </LinearGradient>
+          </Animated.View>
+        </PanGestureHandler>
+        {/* </Animated.View> */}
+      </LinearGradient>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
   },
 });
